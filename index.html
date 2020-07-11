@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+
+
+	<head>
+	
+	<meta charset="utf-8">
+	
+	<style>
+		
+		* {
+				margin: 0;
+				padding: 0;
+		}
+		html,
+		body {
+				background-color:  rgb(255,243,227);
+				font-family: Verdana, Tahoma, monospace;
+				height: 100%;
+				
+		}
+		
+		.main {
+				display: table;
+				height: 100%;
+				width: 100%				
+		}
+		
+			
+		.content {
+				display: table-row;
+				height: 100%;
+				align-items: center;     /*Центрирование по вертикали */
+				vertical-align: middle;				
+		}
+		
+		.footer {
+				
+		}
+		
+		.button1 {
+		background: rgb(255,242,242);
+		width: 400px;
+		max-width: 90%;
+		height: 50px;
+		font-size: 19px;
+		line-height: 22px;
+		font-family: Verdana, Tahoma, monospace;
+		color: rgb(0,0,0)
+		/* Кнопка розовая */
+		}
+		
+		.button2 {
+		background: rgb(252,242,217);
+		width: 400px;
+		max-width: 90%;
+		height: 50px;
+		font-size: 19px;
+		line-height: 22px;
+		font-family: Verdana, Tahoma, monospace;
+		color: rgb(0,0,0)
+		/* Кнопка жёлтая */
+		}
+		
+		.buttonAgain {
+		background: rgb(252,242,217);
+		border: 1px solid black;
+		width: 400px;
+		max-width: 90%;
+		height: 50px;
+		text-decoration: none;
+		font-size: 19px;
+		line-height: 22px;
+		font-family: Verdana, Tahoma, monospace;
+		color: rgb(0,0,0)
+		/* Кнопка сначала */
+		}
+		
+		.resultField {
+		background: rgb(255,242,242);
+		border: 1px solid rgb(255,192,203);
+		width: 100%;
+		max-width: 600px;
+		display: none;
+		font-size: 22px;
+		line-height: 22px;
+		font-family: Verdana, Tahoma, monospace;
+		color: rgb(0,0,0)
+		/* Поле для вывода результата */
+		}
+		
+		
+		
+	</style>
+	</head>
+
+	<body>
+	<script type="text/javascript">
+        
+	var countQuest = 0;
+    var plus = 0;
+    var test_start = 0;
+	var WhatAss = ['https://i.imgur.com/XUQtSTk.png','https://i.imgur.com/I364xl1.png','https://i.imgur.com/GCETPja.png','https://i.imgur.com/fj1wRSO.png','https://i.imgur.com/DfOkiuq.png','https://i.imgur.com/rwrxZml.png','https://i.imgur.com/OH1FNf2.png','https://i.imgur.com/f4tlfv7.png','https://i.imgur.com/ABZuUKT.png','https://i.imgur.com/6IWkch2.png','https://i.imgur.com/KCHckPo.png','https://i.imgur.com/T7O9gxG.png','https://i.imgur.com/9Al4xHq.png','https://i.imgur.com/G1df2Kw.png','https://i.imgur.com/8CT8poM.png',];
+	var HappenAss = ["Приключения","Ботинок","Римминг и двойное проникновение","Спокойная ночь", "Внезапный дедлайн", "Острые перцы", "Огурцы с молоком", "Ж-ж-ж, которое неспроста", "Рейтинг", "Внезапная обнажёнка", "Шлёп-шлёп","Самовозгорание","Два стула","Цепкие ладошки","Уютнейшие хлопковые труселя","Прыщ" ];
+	var OutAss = ["Накати пивка","Дай сдачи","Начитайся флаффа до тошноты и нажрись мороженого","Шли её на хуй, там ей самое место","Сделай ей римминг, задобри её", "Упорством и коварством","Собери жопу в кулак", "С жопой всегда можно договориться", "Расчехляй кредитку", "Обратись к мудрости	предков: не думай о жопе сейчас. Подумай о ней завтра", "Иди поешь. А потом ещё поешь", "Работай, солнце ещё высоко", "Спихни её на кого-нибудь и иди читать фичок с ОТП", "Выучи вавилонский. Поможет вряд ли, зато все охуеют","Если её игнорировать, она исчезнет, правда?","Критикуй её вежливо, но бездушно","Покажи ей свою — пережопь её!"];
+	var WhoseAss = ['https://i.imgur.com/oqZQ5Ki.png','https://i.imgur.com/t5D6PVJ.png','https://i.imgur.com/FCt6sD0.png','https://i.imgur.com/zLFPvrd.png','https://i.imgur.com/Nv1Qjal.png','https://i.imgur.com/hNZdHGl.png','https://i.imgur.com/sOyNGu0.png','https://i.imgur.com/rC9piaT.png','https://i.imgur.com/tFAkbH4.png','https://i.imgur.com/YksqvSA.png','https://i.imgur.com/YW5xzzn.png','https://i.imgur.com/6ZDV6ko.png'];
+	var WhatAss_result;
+	var HappenAss_result;
+	var OutAss_result;
+	var WhoseAss_result;
+	var Ass_result;
+     
+    function check(num){
+     
+        if(num == 5){ 
+             
+            document.getElementById('area').style.display='block';
+            document.getElementById('start').style.display='none';
+			document.getElementById('again').style.display='none';
+             
+            if(test_start == 0){
+             
+                    //Массив вопросов
+					
+                var questions = [""];
+ 
+                    //Массивы вариантов ответов
+					
+				var number1 = ["Какая ты жопа"];    
+				var number2 = ["Чья ты жопа"];
+				var number3 = ["Что может случиться с твоей жопой"];    
+				var number4 = ["Как выбраться из жопы"];
+				var number5 = [];
+ 
+                if (countQuest == 0) {
+				
+				document.getElementById('question').innerHTML=questions[countQuest];
+             
+                document.getElementById('option1').innerHTML=number1[countQuest];
+                document.getElementById('option2').innerHTML=number2[countQuest];
+                document.getElementById('option3').innerHTML=number3[countQuest];
+                document.getElementById('option4').innerHTML=number4[countQuest];
+				document.getElementById('option5').style.display='none';
+				}
+				                
+                    //Ответы	
+					
+				if (countQuest == 0) {
+					if (num == 0) { WhatAss_result = Math.floor(Math.random() * WhatAss.length);
+									Ass_result = WhatAss[WhatAss_result]
+					}
+					else {
+						if (num == 1) { WhoseAss_result = Math.floor(Math.random() * WhoseAss.length);
+											Ass_result = WhoseAss[WhoseAss_result]											
+						}
+						else {
+							if (num == 2) { HappenAss_result = Math.floor(Math.random() * HappenAss.length);
+										Ass_result = HappenAss[HappenAss_result]
+							}
+							else {
+								if (num == 3) { OutAss_result = Math.floor(Math.random() * OutAss.length);
+											Ass_result = OutAss[OutAss_result]
+								}
+							}
+						}
+					}
+				}
+					
+								
+                 
+                test_start = 1;    
+            }
+        }
+        else{
+                    //Массив вопросов
+					
+                var questions = [""];
+ 
+                    //Массивы вариантов ответов
+					
+				var number1 = ["Какая ты жопа"];    
+				var number2 = ["Чья ты жопа"];
+				var number3 = ["Что может случиться с твоей жопой"];    
+				var number4 = ["Как выбраться из жопы"];
+				var number5 = [];
+             
+               //Ответы	
+					
+				if (countQuest == 0) {
+					if (num == 0) { WhatAss_result = Math.floor(Math.random() * WhatAss.length);
+									Ass_result = WhatAss[WhatAss_result]
+					}
+					else {
+						if (num == 1) { WhoseAss_result = Math.floor(Math.random() * WhoseAss.length);
+											Ass_result = WhoseAss[WhoseAss_result]											
+						}
+						else {
+							if (num == 2) { HappenAss_result = Math.floor(Math.random() * HappenAss.length);
+										Ass_result = HappenAss[HappenAss_result]
+							}
+							else {
+								if (num == 3) { OutAss_result = Math.floor(Math.random() * OutAss.length);
+											Ass_result = OutAss[OutAss_result]
+								}
+							}
+						}
+					}
+				}
+				
+            if(questions.length - 1> countQuest){
+ 
+                countQuest++;
+				
+				if (countQuest == 0) {
+				
+				document.getElementById('question').innerHTML=questions[countQuest];
+             
+                document.getElementById('option1').innerHTML=number1[countQuest];
+                document.getElementById('option2').innerHTML=number2[countQuest];
+                document.getElementById('option3').innerHTML=number3[countQuest];
+                document.getElementById('option4').innerHTML=number4[countQuest];
+				document.getElementById('option5').style.display='none';
+				}
+			}
+		            else {
+					document.getElementById('area').style.display='none';
+					document.getElementById('start').style.display='none';
+					document.getElementById('start').style.marginTop='2%';
+					document.getElementById('resultArea').style.display='block';
+					document.getElementById('again').style.display='inline';
+				if(num==0){
+					<!-- Setzt ein Bild in in das div imageArea -->
+					document.getElementById('resultArea').style.display='none';
+					document.getElementById('imageArea').style.display='block';
+					document.getElementById('start').style.display='none';
+					document.getElementById('start').style.marginTop='2%';
+					SetImage(Ass_result)
+					document.getElementById('again').style.display='inline';
+				}
+				else {
+					if(num==1){
+					<!-- Setzt ein Bild in in das div imageArea -->
+					document.getElementById('resultArea').style.display='none';
+					document.getElementById('imageArea').style.display='block';
+					document.getElementById('start').style.display='none';
+					document.getElementById('start').style.marginTop='2%';					
+					SetImage(Ass_result)
+					document.getElementById('again').style.display='inline';
+				}
+				else
+				
+				
+				<!-- Setzt einen Text für das Element result -->
+				
+				SetText(Ass_result);	
+				}
+            }
+        }
+    }
+	
+	
+	function restart(){
+		check(5);
+		document.getElementById('area').style.display='block';
+        document.getElementById('start').style.display='none';
+		document.getElementById('again').style.display='inline';
+		document.getElementById('resultArea').style.display='none';
+		document.getElementById('imageArea').style.display='none';
+		document.getElementById('again').style.display='none';
+	}
+	
+	function RemoveOldContent (parentId,childId){
+	
+		var element=document.getElementById(parentId);
+		var child=document.getElementById(childId);
+		if(child==null) return;
+		element.removeChild(child);
+	}
+	
+	function SetImage(name){
+		RemoveOldContent('imageArea','resultImage');
+		var img = document.createElement("img");
+		img.setAttribute('id','resultImage');
+		img.setAttribute('src', name);
+		img.setAttribute('style','width:100%;max-width: 500px');
+		var element=document.getElementById('imageArea');
+		element.appendChild(img);
+	}
+<!-- Setzt einen Text für das Element result -->	
+	function SetText(name){
+				
+				document.getElementById('result').innerHTML=name;
+	}
+	</script>
+	
+	<div class="main" align="center">
+	
+		<div class="content">
+	
+			<center>
+	<!---->	
+	<a href="https://archiveofourown.org/users/ZhopAss/pseuds/fandom%20ZhopAss%202020/works" target=_blank><img src="https://i.imgur.com/8T1ytcG.png" style="top: 0; width:100%; max-width:1000px; margin-left: auto; margin-right: auto; left: 0; right: 0;" alt="fandom ZhopAss 2020 / Хедер"></a>
+		
+				<div style="margin: 5;">
+	<!---->
+					<div id="area" style="display: none; width:100%; max-width:1000px; height: 400px; margin-left: auto; margin-right: auto; left: 0; right: 0;">
+
+						<p style="color: rgb(0,0,0);" id="question"></p>
+						<p style="font-size: 20px; font-weight: bold; margin: 2em; color: rgb(0,0,0);">Познай себя</p>
+						
+						<button onclick="check(0)" class="button1" id="option1" style="margin: 5px;"></button>
+						<br>
+						<button onclick="check(1)" class="button2" id="option2" style="margin-top: 5px; margin-bottom: 20px;"></button>
+						<br>
+						<p style="font-size: 20px; font-weight: bold; margin: 2em; color: rgb(0,0,0);">Спроси Жоповангу</p>
+						<br>
+						<button onclick="check(2)" class="button1" id="option3" style="margin-top: 5px; margin-bottom: 5px;"></button>
+						<br>
+						<button onclick="check(3)" class="button2" id="option4" style="margin: 5px;"></button>
+						<br>
+						<button onclick="check(4)" class="button1" id="option5" style="margin: 5px;"></button>
+						<br>
+						
+					</div>
+	
+				</div>
+	
+		</center>
+				
+		<center>
+			<!-- "  -->
+			<div align="justify" class="resultField"  style="margin-top: 12%; z-index: 1; margin-left: auto; margin-right: auto; left: 0; right: 0; line-height: 27px;" id="resultArea">
+			
+			<img src="https://i.imgur.com/CSVRkBU.png" style="z-index: 2; float: left; width:350px; margin-left: -30%; margin-top: -15%;" alt="fandom ZhopAss 2020 / Жопованга">
+			
+			<p style="padding: 10px; float: right; width: 60%;" id="result"></p>
+			
+			</div>
+			
+			<div id="imageArea" style="margin-top: 5em;"></div>
+						
+		</center>	
+		
+		<center>
+			
+			<div style="display: table-cell; vertical-align: middle;  height: 100px;">
+			
+			<button id="start" class="button2" onclick="check(5)" style="z-index: -1; margin-top: 300px; margin-left: auto; margin-right: auto; left: 0; right: 0;">Жамкни и прозрей, ибо грядёт</button>
+				<!-- " -->							
+			</div>
+		
+		</center>
+		
+		</div>
+		
+		<div class="footer">
+		
+			<center>
+				
+				<p style="margin-left: auto; margin-right: auto; left: 0; right: 0;  z-index: 1;"><button onclick="restart()" class="buttonAgain" id="again" style="display: none;">Ещё раз</button></p>
+								
+			</center>
+			
+		</div>
+			
+		<div class="footer">
+		
+			<center>
+											
+				<img align="center" src="https://i.imgur.com/s5qrqyk.png" style="width:100%; max-width:1200px" alt="fandom ZhopAss 2020 / Футер">
+				
+			</center>
+			
+		</div>
+		
+	</div>
+	
+	</body>
+	
+</html>
